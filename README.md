@@ -261,5 +261,5 @@ The functions `select_sort()` and `bubble_sort()` are defined in the header file
 
 ## P.S.
 
-I had also implemented re-rooting that is starting a new branch, u gotta do `patricide`. The recipe for that too is in the [Makefile](https://github.com/theintrospectiveidiot/fun/blob/master/Makefile). 
+I have also implemented re-rooting that is starting a new branch, u gotta do `patricide`. The recipe for that too is in the [Makefile](https://github.com/theintrospectiveidiot/fun/blob/master/Makefile). 
 
