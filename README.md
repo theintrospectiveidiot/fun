@@ -97,7 +97,8 @@ So, then implemented a version control system, which saves the code, along with 
 
 So, wrote two programs that do exactly this!
 
-append.c:
+`append.c`
+
 ```c
 #include<stdio.h>
 
@@ -151,7 +152,8 @@ Running `make inherit`  would save the program along with its generation count i
 
 Now, if u wanna summon the previous generation, u gotta `visit_cemetery`
 
-fetch.c:
+`fetch.c`
+
 ```c
 #include<stdio.h>
 #include<string.h>
@@ -188,5 +190,69 @@ This searches for the gen count we saved in that order, overwrites the current g
 
 To make it work, just doing `gcc fetch.c -o fetch && ./fetch $(GEN)` would be sufficient.
 
+## Now the cool part!!!!!!
 
+Why just stop at counting generations?
+What if we wanna change what the code does after it reaches a certain generation?
 
+Something stupid like, changing the sorting algorithm from `select_sort()` to `bubble_sort()` when the code has been compiled and overwritten 42 times?
+
+That's exactly what I did with `trojanized_quine.c`!
+
+```c
+const char *s = "//%d%c%c#include<stdio.h>%c#include<string.h>%c#include%ceverything_everywhere_all_at_once.h%c%c%cconst char *s = %c%s%c;%c%cvoid wired(const char *s,int n) {%c%cchar *q = %c//%%d%c;%c%cchar r[10];%c%csprintf(r,q,n);%c%cint i = 0;%c%csize_t l = strlen(s);%c%cchar *p = %cn = %%d%c;%c%cchar z[10];%c%csprintf(z,p,n);%c%csize_t l1 = strlen(r);%c%csize_t l2 = strlen(z);%c%cwhile(i < l) {%c%c%cif(strncmp(&s[i],r,l1) == 0) {%c%c%c%cfprintf(stderr,%c//%%d%c,n+1);%c%c%c%ci += l1;%c%c%c}%c%c%cif(strncmp(&s[i],z,l2) == 0) {%c%c%c%cfprintf(stderr,%cn = %%d%c,n+1);%c%c%c%ci += l2;%c%c%c}%c%c%cif(strncmp(&s[i],%cselect_sort()%c,13) == 0) {%c%c%c%cif(n == 42) {%c%c%c%c%cfprintf(stderr,%cbubble_sort()%c);%c%c%c%c%ci += 13;%c%c%c%c}%c%c%c%celse {fputc(s[i],stderr);%c%c%c%ci++;}%c%c%c}%c%c%celse {fputc(s[i],stderr);%c%c%ci++;}%c%c}%c}%c%cint main() {%c%cchar string[4096];%c%cint n = %d;%c%cselect_sort();%c%cfprintf(stdout,%c%%cHello, there is nothing fishy here...%%c(:^o^:)%%c%c,10,10,10);%c%csprintf(string,s,n,10,10,10,10,34,34,10,10,34,s,34,10,10,10,9,34,34,10,9,10,9,10,9,10,9,10,9,34,34,10,9,10,9,10,9,10,9,10,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,34,34,10,9,9,9,10,9,9,9,9,34,34,10,9,9,9,9,10,9,9,9,10,9,9,9,10,9,9,9,10,9,9,10,9,9,10,9,9,10,9,10,10,10,10,9,10,9,n,10,9,10,9,34,34,10,9,10,9,10,10);%c%cwired(string,n);%c}%c";
+```
+
+This is again the string that stores the skeleton of the code, just like it did in `gen_counter.c` and `initial_trojanized_quine.c`,
+
+Again, injecting this string `s` into `string` in `main()`:
+
+```c
+	char string[4096];
+	int n = 22;
+	fprintf(stdout,"%cHello, there is nothing fishy here...%c(:^o^:)%c",10,10,10);
+	sprintf(string,s,n,10,10,10,10,34,34,10,10,34,s,34,10,10,10,9,34,34,10,9,10,9,10,9,10,9,10,9,34,34,10,9,10,9,10,9,10,9,10,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,34,34,10,9,9,9,10,9,9,9,9,34,34,10,9,9,9,9,10,9,9,9,10,9,9,9,10,9,9,9,10,9,9,10,9,9,10,9,9,10,9,10,10,10,10,9,10,9,n,10,9,10,9,34,34,10,9,10,9,10,10);
+```
+
+This injects `s` into `string` in `main()`.
+
+Now, the main part, the funnction that does this!
+
+```c
+void wired(const char *s,int n) {
+	char *q = "//%d";
+	char r[10];
+	sprintf(r,q,n);
+	int i = 0;
+	size_t l = strlen(s);
+	char *p = "n = %d";
+	char z[10];
+	sprintf(z,p,n);
+	size_t l1 = strlen(r);
+	size_t l2 = strlen(z);
+	while(i < l) {
+		if(strncmp(&s[i],r,l1) == 0) {
+			fprintf(stderr,"//%d",n+1);
+			i += l1;  //increments the gen count in the comment
+		}
+		if(strncmp(&s[i],z,l2) == 0) {
+			fprintf(stderr,"n = %d",n+1);
+			i += l2;  //increments the gen count of the variable in main()
+		}
+		if(strncmp(&s[i],"select_sort()",13) == 0) {
+			if(n == 42) {
+				fprintf(stderr,"bubble_sort()");
+				i += 13;  //changes the function being called from main() when n = 42
+			}
+			else {fputc(s[i],stderr);
+			i++;}
+		}
+		else {fputc(s[i],stderr);
+		i++;}
+	}
+}
+```
+
+Just calling it in main by `wired(string,n);` in `main()` would do the work.
+
+The functions `select_sort()` and `bubble_sort()` are defined in the header file `everything_everywhere_all_at_once.h` which also has my custom `printf()` called `put_stuff()` and custom `scanf()` called `get_stuff()`.
