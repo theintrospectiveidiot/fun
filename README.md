@@ -6,7 +6,7 @@ If you wanna know the coolest thing here? Just go [here](https://github.com/thei
 
 But, I would suggest to go through all of them, or atleast from [here](https://github.com/theintrospectiveidiot/fun/tree/master?tab=readme-ov-file#now-comes-the-fun-part).
 
-So, I wrote `inital_trojanized_quine.c` which would quietly change the `char` to ` int` after compiling.
+So, I wrote [inital_trojanized_quine.c](https://github.com/theintrospectiveidiot/fun/blob/master/initial_trojanized_quine.c) which would quietly change the `char` to ` int` after compiling.
 ```c
 	const char s = #include<stdio.h>%c#include<string.h>%c%cconst char *s = %c%s%c;%c%cvoid wired(const char *s) {%c%cchar *r = %cchar%c;%c%cint i = 0;%c%csize_t l = strlen(s);%c%cwhile(i < l) {%c%c%cif(strncmp(&s[i],r,4) == 0) {%c%c%c%cprintf(%c int%c);%c%c%c%ci += 4;%c%c%c}%c%c%celse {putchar(s[i]);%c%c%ci++;}%c%c}%c}%c%cint main() {%c%cchar string[4096];%c%csprintf(string,s,10,10,10,34,s,34,10,10,10,9,34,34,10,9,10,9,10,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,10,9,10,10,10,10,9,10,9,10,9,10);%c%cwired(string);%c};
 ```
@@ -42,7 +42,7 @@ Now, just calling by `wired(string)` would do what we wanted.
 
 I thought, wouldn't it be cool if we can update a counter after it compiles itself, and somehow know how many times the program has run.
 
-Implemented that in `gen_counter.c`.
+Implemented that in [gen_counter.c](https://github.com/theintrospectiveidiot/fun/blob/master/gen_counter.c).
 
 `//22` represents the number of times it has been compiled and overwritten.
 
@@ -196,7 +196,7 @@ What if we wanna change what the code does after it reaches a certain generation
 
 Something stupid like, changing the sorting algorithm from `select_sort()` to `bubble_sort()` when the code has been compiled and overwritten 42 times?
 
-That's exactly what I did with `trojanized_quine.c`!
+That's exactly what I did with [trojanized_quine.c](https://github.com/theintrospectiveidiot/fun/blob/master/trojanized_quine.c)!
 
 ```c
 const char *s = "//%d%c%c#include<stdio.h>%c#include<string.h>%c#include%ceverything_everywhere_all_at_once.h%c%c%cconst char *s = %c%s%c;%c%cvoid wired(const char *s,int n) {%c%cchar *q = %c//%%d%c;%c%cchar r[10];%c%csprintf(r,q,n);%c%cint i = 0;%c%csize_t l = strlen(s);%c%cchar *p = %cn = %%d%c;%c%cchar z[10];%c%csprintf(z,p,n);%c%csize_t l1 = strlen(r);%c%csize_t l2 = strlen(z);%c%cwhile(i < l) {%c%c%cif(strncmp(&s[i],r,l1) == 0) {%c%c%c%cfprintf(stderr,%c//%%d%c,n+1);%c%c%c%ci += l1;%c%c%c}%c%c%cif(strncmp(&s[i],z,l2) == 0) {%c%c%c%cfprintf(stderr,%cn = %%d%c,n+1);%c%c%c%ci += l2;%c%c%c}%c%c%cif(strncmp(&s[i],%cselect_sort()%c,13) == 0) {%c%c%c%cif(n == 42) {%c%c%c%c%cfprintf(stderr,%cbubble_sort()%c);%c%c%c%c%ci += 13;%c%c%c%c}%c%c%c%celse {fputc(s[i],stderr);%c%c%c%ci++;}%c%c%c}%c%c%celse {fputc(s[i],stderr);%c%c%ci++;}%c%c}%c}%c%cint main() {%c%cchar string[4096];%c%cint n = %d;%c%cselect_sort();%c%cfprintf(stdout,%c%%cHello, there is nothing fishy here...%%c(:^o^:)%%c%c,10,10,10);%c%csprintf(string,s,n,10,10,10,10,34,34,10,10,34,s,34,10,10,10,9,34,34,10,9,10,9,10,9,10,9,10,9,34,34,10,9,10,9,10,9,10,9,10,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,34,34,10,9,9,9,10,9,9,9,9,34,34,10,9,9,9,9,10,9,9,9,10,9,9,9,10,9,9,9,10,9,9,10,9,9,10,9,9,10,9,10,10,10,10,9,10,9,n,10,9,10,9,34,34,10,9,10,9,10,10);%c%cwired(string,n);%c}%c";
