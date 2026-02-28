@@ -101,10 +101,9 @@ So, then implemented a version control system, which saves the code, along with 
 
 So, wrote two programs that do exactly this!
 
-`append.c`
+[append.c](https://github.com/theintrospectiveidiot/fun/blob/master/append.c)
 
 ```c
-#include<stdio.h>
 
 int main(int argc,char *argv[]) {
 	FILE *g = fopen(argv[2],"a+");  //collection_of_all_sins
@@ -156,13 +155,9 @@ Running `make inherit`  would save the program along with its generation count i
 
 Now, if u wanna summon the previous generation, u gotta `visit_cemetery`
 
-`fetch.c`
+[fetch.c](https://github.com/theintrospectiveidiot/fun/blob/master/fetch.c)
 
 ```c
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-
 int main(int argc,char *argv[]) {
 	FILE *f = fopen("collection_of_all_sins","r");
 	FILE *g = fopen("trojanized_quine.c","w");
@@ -261,10 +256,10 @@ Just calling it in main by `wired(string,n);` in `main()` would do the work.
 
 To see it work, just run `make inherit` and see it quietly altering stuff.
 
-The functions `select_sort()` and `bubble_sort()` are defined in the header file `everything_everywhere_all_at_once.h` which also has my custom `printf()` called `put_stuff()` and custom `scanf()` called `get_stuff()`.
+The functions `select_sort()` and `bubble_sort()` are defined in the header file [everything_everywhere_all_at_once.h](https://github.com/theintrospectiveidiot/fun/blob/master/everything_everywhere_all_at_once.h) which also has my custom `printf()` called `put_stuff()` and custom `scanf()` called `get_stuff()`.
 
 
 ## P.S.
 
-I had also implemented re-rooting that is starting a new branch, u gotta do `patricide`. The recipe for that too is in the `Makefile`.
+I had also implemented re-rooting that is starting a new branch, u gotta do `patricide`. The recipe for that too is in the [Makefile](https://github.com/theintrospectiveidiot/fun/blob/master/Makefile). 
 
