@@ -260,7 +260,7 @@ To see it work, just run `make inherit` and see it quietly altering stuff.
 The functions `select_sort()` and `bubble_sort()` are defined in the header file `everything_everywhere_all_at_once.h` which also has my custom `printf()` called `put_stuff()` and custom `scanf()` called `get_stuff()`.
 
 
-## Notes
+## P.S.
 
 I had also implemented re-rooting that is starting a new branch, u gotta do `patricide`. The recipe for that too is in the `Makefile`.
 
