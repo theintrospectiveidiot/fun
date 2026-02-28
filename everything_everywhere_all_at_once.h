@@ -8,12 +8,48 @@ void float_print(double val);
 ssize_t length(char* s);
 int expo(int a,int b);
 int string_to_int(char *s,ssize_t l);
+double string_to_float(char *s,ssize_t l);
+void put_stuff(char *s, ...);
+
+double string_to_float(char *s,ssize_t l) {
+	char *p;
+	int i=0;
+	for(p=s;*p;p++) {
+		if(*p == '.') {
+			break;		
+		}
+		else i++;
+	}
+
+	double f=0;
+	for(int j=0;j<i;j++) {
+		f += (s[j] - '0') * expo(10,i-j-1);
+	}
+
+	for(int j=i+1;j<l;j++) {
+		f += (double) (s[j] - '0')/expo(10,j-i);
+	}
+	return f;
+	
+}
+
+void float_print(double f) {
+	int i = (int) f;
+	double g = f - i;
+	int_print(i);
+	write(1,".",1);
+	for(int j=0;j<6;j++) {
+		g = g*10;
+		int_print((int) g);
+		g = g - ((int) g);
+	}
+}
+
+
 
 void get_stuff(char* s, ...) {
 va_list arg;
 char *p;
-double* f;
-int *o;
 char A[512];
 ssize_t r = read(0,A,512);
 va_start(arg,s);
@@ -24,6 +60,15 @@ for(p=s;*p;p++) {
 				int *i = va_arg(arg,int*);
 				*i = string_to_int(A,r);
 				break;
+			case 'f':
+				double *f = va_arg(arg,double*);
+				*f = string_to_float(A,r);
+				break;
+			case 's':
+				char *string = va_arg(arg,char*);
+				for(int o=0;o<r;o++) {
+					string[o] = A[o];
+				}
 		}
 	}
 }
@@ -59,10 +104,10 @@ case 'd':
 	i = va_arg(arg,int);
 	int_print(i);
 	break;
-/*case 'f':
+case 'f':
 	f = va_arg(arg,double);
 	float_print(f);
-	break;*/
+	break;
 case 's':
 	t = va_arg(arg,char *);
 	write(1,t,length(t));
