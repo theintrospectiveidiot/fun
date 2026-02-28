@@ -4,7 +4,7 @@ After going through Ken Thompson's Turing Award lecture titled "Reflections on t
 
 If you wanna know the coolest thing here? Just go [here](https://github.com/theintrospectiveidiot/fun/tree/master?tab=readme-ov-file#now-the-cool-part).
 
-But, I would suggest to go through all of them, or atleast from [here](https://github.com/theintrospectiveidiot/fun/tree/master?tab=readme-ov-file#now-comes-the-fun-part)
+But, I would suggest to go through all of them, or atleast from [here](https://github.com/theintrospectiveidiot/fun/tree/master?tab=readme-ov-file#now-comes-the-fun-part).
 
 So, I wrote `inital_trojanized_quine.c` which would quietly change the `char` to ` int` after compiling.
 ```c
