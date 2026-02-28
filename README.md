@@ -133,7 +133,7 @@ We have used `gen_counter.c` to store the genration of some other program which 
 
 Although, the program we are doing this for (`trojanized_quine.c`) is a quine indeed, `gen_counter.c` makes it general...
 
-To append it, that it for the next generation to `inherit` the previous generation, just make a Makefile
+To append it, that it for the next generation to `inherit` the previous generation, just make a Makefile or you can use [this](https://github.com/theintrospectiveidiot/fun/blob/master/Makefile).
 
 
 ```Makefile
