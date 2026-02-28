@@ -1,6 +1,6 @@
 ## fun
 
-After going through Ken Thompson's Turing Award lecture titled "Reflections on trusting Trust", I realized that the idea of self reproducing code was such a cool thing!
+After going through Ken Thompson's Turing Award lecture titled "Reflections on trusting Trust", I felt like the idea of self reproducing code was such a cool thing!
 
 So, I wrote `inital_trojanized_quine.c` which would quietly change the `char` to ` int` after compiling.
 ```c
@@ -34,11 +34,12 @@ This injects the code to `string` and then, we pass it to the function `wired` w
 Now, just calling by `wired(string)` would do what we wanted.
 
 
-Now, comes the fun part!!
+## Now, comes the fun part!!
 
 I thought, wouldn't it be cool if we can update a counter after it compiles itself, and somehow know how many times the program has run.
 
 Implemented that in `gen_counter.c`.
+
 `//22` represents the number of times it has been compiled and overwritten.
 
 ```c
@@ -83,7 +84,8 @@ void wired(const char *s,int n) {
 }
 ```
 
-Now, just compiling and overwriting itself with `gcc gen_counter.c -o gen_counter && ./gen_counter 2> gen_counter.c` would increase the comment by one, and the variable `n` in main() by 1.
+Now, just compiling and overwriting itself with 
+`gcc gen_counter.c -o gen_counter && ./gen_counter 2> gen_counter.c` would increase the comment by one, and the variable `n` in main() by 1.
 
 
 
