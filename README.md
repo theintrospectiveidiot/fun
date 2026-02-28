@@ -87,7 +87,106 @@ void wired(const char *s,int n) {
 Now, just compiling and overwriting itself with 
 `gcc gen_counter.c -o gen_counter && ./gen_counter 2> gen_counter.c` would increase the comment by one, and the variable `n` in main() by 1.
 
+## Now, the responsible part!!
 
+So, the program overwrites itself, right? What if we do a small pointer incrementing mistake and the overwritten program crahses? 
+
+What if the new overwritten file has weird characters because of our small mistake?
+
+So, then implemented a version control system, which saves the code, along with the generation in `collection_of_all_sins`, and in case it crashes, just go and fetch the previous generation code.
+
+So, wrote two programs that do exactly this!
+
+append.c:
+```c
+#include<stdio.h>
+
+int main(int argc,char *argv[]) {
+	FILE *g = fopen(argv[2],"a+");  //collection_of_all_sins
+	FILE *f = fopen(argv[1],"r");
+	FILE *h = fopen("gen_counter.c","r");
+	char c,d;
+	fputc(60,g);
+	while((c = fgetc(h)) != 10) {
+		fputc(c,g);  //Gets the generation count from the gen_counter.c and saves it in this specific format.
+	}
+	fputc(62,g);
+
+	while((c = fgetc(f)) != '#') 
+		d = c;
+
+	fputc('~',g);
+	fputc(10,g);
+	fputc(c,g);
+	while((c = fgetc(f)) != EOF) {
+		fputc(c,g);	 //This is the program storing the program we are working on, to collection_of_all_sins
+	}
+	fputc('?',g);  //This helps in identifying that the segement has ended.
+	fputc(10,g);
+}
+```
+We have used `gen_counter.c` to store the genration of some other program which might not necessarily be a quine. 
+
+Although, the program we are doing this for (`trojanized_quine.c`) is a quine indeed, `gen_counter.c` makes it general...
+
+To append it, that it for the next generation to `inherit` the previous generation, just make a Makefile
+
+
+```Makefile
+
+trojanized_quine.o: trojanized_quine.c
+	gcc -c trojanized_quine.c
+
+build_cemetery: append.c
+	gcc append.c -o append
+
+change_gen_counter: gen_counter.c
+	gcc gen_counter.c -o gen_counter
+
+inherit: trojanized_quine.o append gen_counter 
+	gcc trojanized_quine.o -o trojanized_quine && ./append trojanized_quine.c collection_of_all_sins && ./trojanized_quine 2> trojanized_quine.c && ./gen_counter 2> gen_counter.c
+```
+
+Running `make inherit`  would save the program along with its generation count in `collection_of_all_sins` and increase the generation count in `gen_counter.c`.
+
+Now, if u wanna summon the previous generation, u gotta `visit_cemetery`
+
+fetch.c:
+```c
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int main(int argc,char *argv[]) {
+	FILE *f = fopen("collection_of_all_sins","r");
+	FILE *g = fopen("trojanized_quine.c","w");
+	FILE *h = fopen("gen_counter.c","w");
+	char *c = "%c%c%c%s%c%c";
+	char check[4096],string[4096];
+	char z[10];
+	sprintf(z,c,60,'/','/',argv[1],62,'~');
+	char i;
+	while(fscanf(f,"%[^\n]",check) != EOF) {
+	if(strcmp(check,z) == 0) {
+		fgetc(f);
+		fprintf(g,"//%s\n\n",argv[1]);
+		while((i = fgetc(f)) != '?') {
+			fputc(i,g);  //fetches the specific generation from the generation count and overwrites the code. (The format we used, really helps us)
+		}
+	}
+	fgetc(f);
+	}
+
+	char *s = "//%d%c%c#include<stdio.h>%c#include<string.h>%c%cconst char *s = %c%s%c;%c%cvoid wired(const char *s,int n) {%c%cchar *q = %c//%%d%c;%c%cchar r[10];%c%csprintf(r,q,n);%c%cint i = 0;%c%csize_t l = strlen(s);%c%cchar *p = %cn = %%d%c;%c%cchar z[10];%c%csprintf(z,p,n);%c%csize_t l1 = strlen(r);%c%csize_t l2 = strlen(z);%c%cwhile(i < l) {%c%c%cif(strncmp(&s[i],r,l1) == 0) {%c%c%c%cfprintf(stderr,%c//%%d%c,n+1);%c%c%c%ci += l1;%c%c%c}%c%c%cif(strncmp(&s[i],z,l2) == 0) {%c%c%c%cfprintf(stderr,%cn = %%d%c,n+1);%c%c%c%ci += l2;%c%c%c}%c%c%celse {fputc(s[i],stderr);%c%c%ci++;}%c%c}%c}%c%cint main() {%c%cchar string[4096];%c%cint n = %d;%c%c//fprintf(stdout,%c%%cHello, there is nothing fishy here...%%c(:^o^:)%%c%c,10,10,10);%c%csprintf(string,s,n,10,10,10,10,10,34,s,34,10,10,10,9,34,34,10,9,10,9,10,9,10,9,10,9,34,34,10,9,10,9,10,9,10,9,10,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,10,9,10,10,10,10,9,10,9,n,10,9,34,34,10,9,10,9,10,10);%c%cwired(string,n);%c}%c";
+	int n = atoi(argv[1]);
+	fprintf(h,s,n,10,10,10,10,10,34,s,34,10,10,10,9,34,34,10,9,10,9,10,9,10,9,10,9,34,34,10,9,10,9,10,9,10,9,10,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,10,9,10,10,10,10,9,10,9,n,10,9,34,34,10,9,10,9,10,10);
+	//adjusts the generation count in gen_counter.c accordingly.
+}
+```
+
+This searches for the gen count we saved in that order, overwrites the current generation with the earlier generation, stops at `?` and updates the gen_counter.c accordingly
+
+To make it work, just doing `gcc fetch.c -o fetch && ./fetch $(GEN)` would be sufficient.
 
 
 
