@@ -215,7 +215,7 @@ Again, injecting this string `s` into `string` in `main()`:
 
 This injects `s` into `string` in `main()`.
 
-Now, the main part, the funnction that does this!
+Now, the main part, the function that does this!
 
 ```c
 void wired(const char *s,int n) {
