@@ -70,6 +70,11 @@ for(p=s;*p;p++) {
 				for(int o=0;o<r;o++) {
 					string[o] = A[o];
 				}
+				break;
+			case 'c':
+				int *c = va_arg(arg,int*);
+				*c = A[0] - '0';
+				break;
 		}
 	}
 }
