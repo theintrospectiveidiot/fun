@@ -166,7 +166,7 @@ The functions `select_sort()` and `bubble_sort()` are defined in the header file
 
 ## Now, the responsible part!!
 
-So, the program overwrites itself, right? What if we do a small pointer incrementing mistake and the overwritten program crahses? 
+So, the program overwrites itself, right? What if we do a small pointer incrementing mistake and the overwritten program crashes? 
 
 What if the new overwritten file has weird characters because of our small mistake?
 
