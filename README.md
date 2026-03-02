@@ -1,6 +1,9 @@
 ## fun
 
-After going through Ken Thompson's Turing Award lecture titled "Reflections on trusting Trust", I felt like the idea of self reproducing code was such a cool thing!
+After going through Ken Thompson's Turing Award lecture titled "Reflections on trusting Trust", I felt like the idea of self reproducing code was such a cool thing! 
+(You should go and check out his lecture [here](https://dl.acm.org/doi/10.1145/358198.358210), it's so cool!)
+
+For starters, a quine is a self reproducing code, basically a code that prints out itself. So, we declare a string, and the string would be the skeleton of the code, Then inject that with its corresponding `\n` and `\t` and the `"` into a `string` by `sprintf()`. That injected `string` would be the output. So, we've succesfully created a code that prints itself. Then, we can get quirky, and build cool stuff with it. Read the whole documentation for understanding it properly. (I tried my best explaining it, but if u wanna learn it another way or something, check out [this video](https://youtu.be/Fu3laL5VYdM))
 
 If you wanna know the coolest thing here? Just go [here](https://github.com/theintrospectiveidiot/fun/tree/master?tab=readme-ov-file#now-the-cool-part).
 
