@@ -167,7 +167,7 @@ So, the program overwrites itself, right? What if we do a small pointer incremen
 
 What if the new overwritten file has weird characters because of our small mistake?
 
-So, then implemented a version control system, which saves the code, along with the generation in `collection_of_all_sins`, and in case it crashes, just go and fetch the previous generation code.
+So, then implemented a version control system, which saves the code, along with the generation in [collection_of_all_sins](https://github.com/theintrospectiveidiot/fun/blob/master/collection_of_all_sins), and in case it crashes, just go and fetch the previous generation code.
 
 So, wrote two programs that do exactly this!
 
