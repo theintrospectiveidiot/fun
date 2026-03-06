@@ -11,6 +11,27 @@ void string_to_int(char *s,ssize_t l,int *p);
 void string_to_float(char *s,ssize_t l,double *f);
 void put_stuff(char *s, ...);
 
+int comp(int a) {
+	if(a == 1) {
+		return 0;
+	}
+	else if (a == 0) {
+		return 1;
+	}
+}
+
+
+int bin_to_int(int A[],int s) {
+	int n=0;
+	s -= 1;
+	int i=0;
+	for(;s>=0;s--) {
+		n += A[s] * expo(2,i);
+		i++;	
+	}
+	return n;
+}
+
 void string_to_float(char *s,ssize_t l,double *f) {
 	char *p;
 	int i=0;
