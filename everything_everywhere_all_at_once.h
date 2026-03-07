@@ -35,7 +35,7 @@ int chaos(int numbr) {
 		offspring_row[i] = 0;
 	}
 
-	for(int j=0;j<512;j++) {
+	for(int j=1;j<511;j++) {
 		if(parent_row[j+1] + parent_row[j] == 0) {
 			offspring_row[j] = parent_row[j-1];
 		}

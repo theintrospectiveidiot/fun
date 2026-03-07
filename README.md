@@ -184,7 +184,7 @@ int chaos(int numbr) {
 		offspring_row[i] = 0;
 	}			//initializing the offspring row
 
-	for(int j=0;j<512;j++) {								//Now, this is rule 30 which basically says that 
+	for(int j=1;j<511;j++) {								//Now, this is rule 30 which basically says that 
 		if(parent_row[j+1] + parent_row[j] == 0) {		    //if in the earlier generation, the same bit and the bit next to it were both 0
 			offspring_row[j] = parent_row[j-1];				//then that bit in this generation would take the value of the bit left to that 
 		}													//in the previous generation
@@ -194,9 +194,13 @@ int chaos(int numbr) {
 }
 ```
 
-Now, what this does it, instead of incrementing the `gen count` by 1 like we did earlier, it changes the `gen count` to a random number. Rule 30 is for generating pseudo randomness, "pseudo" because once to fix a number, let's say `69` then `rule 30` over `69` is always `237`.
+Now, what this does is, instead of incrementing the `gen count` by 1 like we did earlier, it changes the `gen count` to a random number. Rule 30 is for generating pseudo randomness, "pseudo" because once to fix a number, let's say `69` then `rule 30` over `69` is always `237`.
 
-You can check [num_rule30.c](https://github.com/theintrospectiveidiot/fun/blob/master/num_rule30.c) for a better understanding of how that works. Also, you'll find the functions `milky_twilight()` and `bin_to_int` in [my header file](https://github.com/theintrospectiveidiot/fun/blob/master/everything_everywhere_all_at_once.h).
+How it helps us is, [earlier](https://github.com/theintrospectiveidiot/fun/tree/master?tab=readme-ov-file#now-the-cool-part) you knew that it would change at 42 and 42 would come after 41, and so it was predicatble. With this pseudo randomness, its hard to predict when the required number will come and so our quine has become a bit more chaotic now, isn't it?
+
+You can check [num_rule30.c](https://github.com/theintrospectiveidiot/fun/blob/master/num_rule30.c) for a better understanding of how that works. 
+
+Also, you'll find the functions `milky_twilight()` and `bin_to_int()` in [my header file](https://github.com/theintrospectiveidiot/fun/blob/master/everything_everywhere_all_at_once.h).
 
 Also, it is highly possible that the number 42 might not be in the sequence. So, we'll consider its multiples. This way, we'll have a bit more numbers, but not too many, as there are only 7 multiples of 42 (including 0) which can be represented by 8 bits.
 
