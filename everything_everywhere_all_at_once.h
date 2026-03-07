@@ -22,14 +22,14 @@ int comp(int a) {
 	}
 }
 
-int chaos(int cell) {
+int chaos(int numbr) {
 	int parent_row[512],offspring_row[512];
 
 	for(int i=0;i<512;i++) {
 		parent_row[i] = 0;
 	}
 
-	milky_twilight(parent_row + 252,8,cell);
+	milky_twilight(parent_row + 252,8,numbr);
 
 	for(int i=0;i<512;i++) {
 		offspring_row[i] = 0;
@@ -39,7 +39,7 @@ int chaos(int cell) {
 		if(parent_row[j+1] + parent_row[j] == 0) {
 			offspring_row[j] = parent_row[j-1];
 		}
-		else offspring_row[j] = comp(parent_row[j-1]);
+		else offspring_row[j] = !(parent_row[j-1]);
 	}
 	return bin_to_int(offspring_row + 252,8);
 }

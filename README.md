@@ -5,7 +5,7 @@ After going through Ken Thompson's Turing Award lecture titled "Reflections on t
 
 For starters, a quine is a self reproducing code, basically a code that prints out itself. So, we declare a string, and the string would be the skeleton of the code, Then inject that with its corresponding `\n` and `\t` and the `"` into a `string` by `sprintf()`. That injected `string` would be the output. So, we've succesfully created a code that prints itself. Then, we can get quirky, and build cool stuff with it. Read the whole documentation for understanding it properly. (I tried my best explaining it, but if u wanna learn it another way or something, check out [this video](https://youtu.be/Fu3laL5VYdM))
 
-If you wanna know the coolest thing here? Just go [here](https://github.com/theintrospectiveidiot/fun/tree/master?tab=readme-ov-file#now-the-cool-part).
+If you wanna know the coolest thing here? Just read from [here](https://github.com/theintrospectiveidiot/fun/tree/master?tab=readme-ov-file#now-the-cool-part).
 
 But, I would suggest to go through all of them, or atleast from [here](https://github.com/theintrospectiveidiot/fun/tree/master?tab=readme-ov-file#now-comes-the-fun-part).
 
@@ -163,6 +163,42 @@ To see it work, just run `make inherit` and see it quietly altering stuff.
 
 The functions `select_sort()` and `bubble_sort()` are defined in the header file [everything_everywhere_all_at_once.h](https://github.com/theintrospectiveidiot/fun/blob/master/everything_everywhere_all_at_once.h) which also has my custom `printf()` called `put_stuff()` and custom `scanf()` called `get_stuff()`.
 
+
+## Let's go a bit chaotic now!!
+
+So, [this person](https://www.reddit.com/user/El_Kasztano/) on reddit asked me to consider implementing [elementary cellular automaton](https://en.wikipedia.org/wiki/Elementary_cellular_automaton) in this project to make it less predicatble.
+
+Then, learnt about the basics of elementary cellular automaton from [here](https://www.wolframscience.com/nks/chap-3--the-world-of-simple-programs/) and tried to implement `rule 30` in my code.
+
+```c
+int chaos(int numbr) {
+	int parent_row[512],offspring_row[512];
+
+	for(int i=0;i<512;i++) {
+		parent_row[i] = 0;
+	}			//initializing the parent row
+
+	milky_twilight(parent_row + 252,8,numbr);		//represent the number or in a 8 bit binary which is in the middle of a 512 bit playground
+
+	for(int i=0;i<512;i++) {
+		offspring_row[i] = 0;
+	}			//initializing the offspring row
+
+	for(int j=0;j<512;j++) {								//Now, this is rule 30 which basically says that 
+		if(parent_row[j+1] + parent_row[j] == 0) {		    //if in the earlier generation, the same bit and the bit next to it were both 0
+			offspring_row[j] = parent_row[j-1];				//then that bit in this generation would take the value of the bit left to that 
+		}													//in the previous generation
+		else offspring_row[j] = !(parent_row[j-1]);			//else the complement of that
+	}
+	return bin_to_int(offspring_row + 252,8);		//convert the representation to an integer which is obviously gonna be our output
+}
+```
+
+Now, what this does it, instead of incrementing the `gen count` by 1 like we did earlier, it changes the `gen count` to a random number. Rule 30 is for generating pseudo randomness, "pseudo" because once to fix a number, let's say `69` then `rule 30` over `69` is always `237`.
+
+You can check [num_rule30.c](https://github.com/theintrospectiveidiot/fun/blob/master/num_rule30.c) for a better understanding of how that works. Also, you'll find the functions `milky_twilight()` and `bin_to_int` in [my header file](https://github.com/theintrospectiveidiot/fun/blob/master/everything_everywhere_all_at_once.h).
+
+Also, it is highly possible that the number 42 might not be in the sequence. So, we'll consider its multiples. This way, we'll have a bit more numbers, but not too many, as there are only 7 multiples of 42 (including 0) which can be represented by 8 bits.
 
 ## Now, the responsible part!!
 
