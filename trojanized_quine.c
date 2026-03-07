@@ -1,10 +1,10 @@
-//22
+//137
 
 #include<stdio.h>
 #include<string.h>
 #include"everything_everywhere_all_at_once.h"
 
-const char *s = "//%d%c%c#include<stdio.h>%c#include<string.h>%c#include%ceverything_everywhere_all_at_once.h%c%c%cconst char *s = %c%s%c;%c%cvoid wired(const char *s,int n) {%c%cchar *q = %c//%%d%c;%c%cchar r[10];%c%csprintf(r,q,n);%c%cint i = 0;%c%csize_t l = strlen(s);%c%cchar *p = %cn = %%d%c;%c%cchar z[10];%c%csprintf(z,p,n);%c%csize_t l1 = strlen(r);%c%csize_t l2 = strlen(z);%c%cwhile(i < l) {%c%c%cif(strncmp(&s[i],r,l1) == 0) {%c%c%c%cfprintf(stderr,%c//%%d%c,n+1);%c%c%c%ci += l1;%c%c%c}%c%c%cif(strncmp(&s[i],z,l2) == 0) {%c%c%c%cfprintf(stderr,%cn = %%d%c,n+1);%c%c%c%ci += l2;%c%c%c}%c%c%cif(strncmp(&s[i],%cselect_sort()%c,13) == 0) {%c%c%c%cif(n == 42) {%c%c%c%c%cfprintf(stderr,%cbubble_sort()%c);%c%c%c%c%ci += 13;%c%c%c%c}%c%c%c%celse {fputc(s[i],stderr);%c%c%c%ci++;}%c%c%c}%c%c%celse {fputc(s[i],stderr);%c%c%ci++;}%c%c}%c}%c%cint main() {%c%cchar string[4096];%c%cint n = %d;%c%cselect_sort();%c%cfprintf(stdout,%c%%cHello, there is nothing fishy here...%%c(:^o^:)%%c%c,10,10,10);%c%csprintf(string,s,n,10,10,10,10,34,34,10,10,34,s,34,10,10,10,9,34,34,10,9,10,9,10,9,10,9,10,9,34,34,10,9,10,9,10,9,10,9,10,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,34,34,10,9,9,9,10,9,9,9,9,34,34,10,9,9,9,9,10,9,9,9,10,9,9,9,10,9,9,9,10,9,9,10,9,9,10,9,9,10,9,10,10,10,10,9,10,9,n,10,9,10,9,34,34,10,9,10,9,10,10);%c%cwired(string,n);%c}%c";
+const char *s = "//%d%c%c#include<stdio.h>%c#include<string.h>%c#include%ceverything_everywhere_all_at_once.h%c%c%cconst char *s = %c%s%c;%c%cvoid wired(const char *s,int n) {%c%cchar *q = %c//%%d%c;%c%cchar r[10];%c%csprintf(r,q,n);%c%cint i = 0;%c%csize_t l = strlen(s);%c%cchar *p = %cn = %%d%c;%c%cchar z[10];%c%csprintf(z,p,n);%c%csize_t l1 = strlen(r);%c%csize_t l2 = strlen(z);%c%cwhile(i < l) {%c%c%cif(strncmp(&s[i],r,l1) == 0) {%c%c%c%cfprintf(stderr,%c//%%d%c,chaos(n));%c%c%c%ci += l1;%c%c%c}%c%c%cif(strncmp(&s[i],z,l2) == 0) {%c%c%c%cfprintf(stderr,%cn = %%d%c,chaos(n));%c%c%c%ci += l2;%c%c%c}%c%c%cif(strncmp(&s[i],%cselect_sort()%c,13) == 0) {%c%c%c%cif(n % 42 == 0) {%c%c%c%c%cfprintf(stderr,%cbubble_sort()%c);%c%c%c%c%ci += 13;%c%c%c%c}%c%c%c%celse {fputc(s[i],stderr);%c%c%c%ci++;}%c%c%c}%c%c%celse {fputc(s[i],stderr);%c%c%ci++;}%c%c}%c}%c%cint main() {%c%cchar string[4096];%c%cint n = %d;%c%cselect_sort();%c%cfprintf(stdout,%c%%cHello, there is nothing fishy here...%%c(:^o^:)%%c%c,10,10,10);%c%csprintf(string,s,n,10,10,10,10,34,34,10,10,34,s,34,10,10,10,9,34,34,10,9,10,9,10,9,10,9,10,9,34,34,10,9,10,9,10,9,10,9,10,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,34,34,10,9,9,9,10,9,9,9,9,34,34,10,9,9,9,9,10,9,9,9,10,9,9,9,10,9,9,9,10,9,9,10,9,9,10,9,9,10,9,10,10,10,10,9,10,9,n,10,9,10,9,34,34,10,9,10,9,10,10);%c%cwired(string,n);%c}%c";
 
 void wired(const char *s,int n) {
 	char *q = "//%d";
@@ -19,15 +19,15 @@ void wired(const char *s,int n) {
 	size_t l2 = strlen(z);
 	while(i < l) {
 		if(strncmp(&s[i],r,l1) == 0) {
-			fprintf(stderr,"//%d",n+1);
+			fprintf(stderr,"//%d",chaos(n));
 			i += l1;
 		}
 		if(strncmp(&s[i],z,l2) == 0) {
-			fprintf(stderr,"n = %d",n+1);
+			fprintf(stderr,"n = %d",chaos(n));
 			i += l2;
 		}
 		if(strncmp(&s[i],"select_sort()",13) == 0) {
-			if(n == 42) {
+			if(n % 42 == 0) {
 				fprintf(stderr,"bubble_sort()");
 				i += 13;
 			}
@@ -41,7 +41,7 @@ void wired(const char *s,int n) {
 
 int main() {
 	char string[4096];
-	int n = 22;
+	int n = 137;
 	select_sort();
 	fprintf(stdout,"%cHello, there is nothing fishy here...%c(:^o^:)%c",10,10,10);
 	sprintf(string,s,n,10,10,10,10,34,34,10,10,34,s,34,10,10,10,9,34,34,10,9,10,9,10,9,10,9,10,9,34,34,10,9,10,9,10,9,10,9,10,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,34,34,10,9,9,9,10,9,9,9,9,34,34,10,9,9,9,9,10,9,9,9,10,9,9,9,10,9,9,9,10,9,9,10,9,9,10,9,9,10,9,10,10,10,10,9,10,9,n,10,9,10,9,34,34,10,9,10,9,10,10);

@@ -10,6 +10,8 @@ int expo(int a,int b);
 void string_to_int(char *s,ssize_t l,int *p);
 void string_to_float(char *s,ssize_t l,double *f);
 void put_stuff(char *s, ...);
+void milky_twilight(int A[],int size,int numbr);
+int bin_to_int(int A[],int s);
 
 int comp(int a) {
 	if(a == 1) {
@@ -20,6 +22,35 @@ int comp(int a) {
 	}
 }
 
+int chaos(int cell) {
+	int parent_row[512],offspring_row[512];
+
+	for(int i=0;i<512;i++) {
+		parent_row[i] = 0;
+	}
+
+	milky_twilight(parent_row + 252,8,cell);
+
+	for(int i=0;i<512;i++) {
+		offspring_row[i] = 0;
+	}
+
+	for(int j=0;j<512;j++) {
+		if(parent_row[j+1] + parent_row[j] == 0) {
+			offspring_row[j] = parent_row[j-1];
+		}
+		else offspring_row[j] = comp(parent_row[j-1]);
+	}
+	return bin_to_int(offspring_row + 252,8);
+}
+
+void milky_twilight(int A[],int size,int numbr) {
+	for(int i=size-1;i>=0;i--) {
+		A[i] = numbr % 2;
+		//put_stuff("~d ~d\n",A[i],numbr);
+		numbr /= 2;
+	}
+}
 
 int bin_to_int(int A[],int s) {
 	int n=0;
