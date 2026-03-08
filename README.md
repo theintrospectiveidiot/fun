@@ -9,7 +9,7 @@ If you wanna know the coolest thing here? Just read from [here](https://github.c
 
 But, I would suggest to go through all of them, or atleast from [here](https://github.com/theintrospectiveidiot/fun/tree/master?tab=readme-ov-file#now-comes-the-fun-part).
 
-So, I wrote [inital_trojanized_quine.c](https://github.com/theintrospectiveidiot/fun/blob/master/initial_trojanized_quine.c) which would quietly change the `char` to ` int` after compiling.
+So, I wrote [initial_trojanized_quine.c](https://github.com/theintrospectiveidiot/fun/blob/master/initial_trojanized_quine.c) which would quietly change the `char` to ` int` after compiling.
 ```c
 	const char s = #include<stdio.h>%c#include<string.h>%c%cconst char *s = %c%s%c;%c%cvoid wired(const char *s) {%c%cchar *r = %cchar%c;%c%cint i = 0;%c%csize_t l = strlen(s);%c%cwhile(i < l) {%c%c%cif(strncmp(&s[i],r,4) == 0) {%c%c%c%cprintf(%c int%c);%c%c%c%ci += 4;%c%c%c}%c%c%celse {putchar(s[i]);%c%c%ci++;}%c%c}%c}%c%cint main() {%c%cchar string[4096];%c%csprintf(string,s,10,10,10,34,s,34,10,10,10,9,34,34,10,9,10,9,10,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,10,9,10,10,10,10,9,10,9,10,9,10);%c%cwired(string);%c};
 ```
@@ -166,9 +166,9 @@ The functions `select_sort()` and `bubble_sort()` are defined in the header file
 
 ## Let's go a bit chaotic now!!
 
-So, [this person](https://www.reddit.com/user/El_Kasztano/) on reddit asked me to consider implementing [elementary cellular automaton](https://en.wikipedia.org/wiki/Elementary_cellular_automaton) in this project to make it less predicatble.
+So, [this person](https://www.reddit.com/user/El_Kasztano/) on reddit asked me to consider implementing [elementary cellular automaton](https://en.wikipedia.org/wiki/Elementary_cellular_automaton) in this project to make it less predictable.
 
-Then, learnt about the basics of elementary cellular automaton from [here](https://www.wolframscience.com/nks/chap-3--the-world-of-simple-programs/) and tried to implement `rule 30` in my code.
+And then, I learnt the basics of elementary cellular automaton from [here](https://www.wolframscience.com/nks/chap-3--the-world-of-simple-programs/) and tried to implement `rule 30` in my code.
 
 ```c
 int chaos(int numbr) {
@@ -196,7 +196,7 @@ int chaos(int numbr) {
 
 Now, what this does is, instead of incrementing the `gen count` by 1 like we did earlier, it changes the `gen count` to a random number. Rule 30 is for generating pseudo randomness, "pseudo" because once to fix a number, let's say `69` then `rule 30` over `69` is always `237`.
 
-How it helps us is, [earlier](https://github.com/theintrospectiveidiot/fun/tree/master?tab=readme-ov-file#now-the-cool-part) you knew that it would change at 42 and 42 would come after 41, and so it was predicatble. With this pseudo randomness, its hard to predict when the required number will come and so our quine has become a bit more chaotic now, isn't it?
+How it helps us is, [earlier](https://github.com/theintrospectiveidiot/fun/tree/master?tab=readme-ov-file#now-the-cool-part) you knew that it would change at 42 and 42 would come after 41, and so it was predictable. With this pseudo randomness, its hard to predict when the required number will come and so our quine has become a bit more chaotic now, isn't it?
 
 You can check [num_rule30.c](https://github.com/theintrospectiveidiot/fun/blob/master/num_rule30.c) for a better understanding of how that works. 
 
@@ -306,3 +306,5 @@ To make it work, just doing `gcc fetch.c -o fetch && ./fetch $(GEN)` would be su
 
 I have also implemented re-rooting that is starting a new branch, u gotta do `patricide`. The recipe for that too is in the [Makefile](https://github.com/theintrospectiveidiot/fun/blob/master/Makefile). 
 
+I also know that the current append and fetch won't work with the `rule 30` added `trojanized_quine`. We do need a new type of append or atleast a modified version of that...
+ 
