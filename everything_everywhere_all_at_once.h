@@ -198,11 +198,11 @@ va_end(arg);
 }
 
 int cant_open(int a,char *file) {
-		if(a == -1) {
+	if(a == -1) {
 		write(2,"Error opening file\n",19);
 		return 1;
-		}
-        else return 0;
+	}
+    else return 0;
 } 
 
 ssize_t length(char *s) {
