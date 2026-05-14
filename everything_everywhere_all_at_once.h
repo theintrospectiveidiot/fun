@@ -17,14 +17,6 @@ typedef struct {
 	int array[512];
 } row;
 
-int comp(int a) {
-	if(a == 1) {
-		return 0;
-	}
-	else if (a == 0) {
-		return 1;
-	}
-}
 
 int chaos(int numbr) {
 	row parent_row,offspring_row;
@@ -126,26 +118,30 @@ va_list arg;
 char *p;
 char A[512];
 ssize_t r = read(from,A,512);
+int *i;
+double *f;
+char *string;
+char *c;
 va_start(arg,s);
 for(p=s;*p;p++) {
 	if(*p == '~') {
 		switch(*++p) {
 			case 'd': 
-				int *i = va_arg(arg,int*);
+				i = va_arg(arg,int*);
 				string_to_int(A,r,i);
 				break;
 			case 'f':
-				double *f = va_arg(arg,double*);
+				f = va_arg(arg,double*);
 				string_to_float(A,r,f);
 				break;
 			case 's':
-				char *string = va_arg(arg,char*);
+				string = va_arg(arg,char*);
 				for(int o=0;o<r;o++) {
 					string[o] = A[o];
 				}
 				break;
 			case 'c':
-				int *c = va_arg(arg,int*);
+				i = va_arg(arg,int*);
 				*c = A[0] - '0';
 				break;
 		}
@@ -206,6 +202,7 @@ int cant_open(int a,char *file) {
 		write(2,"Error opening file\n",19);
 		return 1;
 		}
+        else return 0;
 } 
 
 ssize_t length(char *s) {
