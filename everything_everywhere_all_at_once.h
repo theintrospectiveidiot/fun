@@ -26,39 +26,44 @@ int comp(int a) {
 	}
 }
 
-/*row chaos(int numbr) {
+int chaos(int numbr) {
 	row parent_row,offspring_row;
-	/*if(numbr == 85 || numbr == 172 || numbr == 171 || numbr == 170) {
+	if(numbr == 85 || numbr == 172 || numbr == 171 || numbr == 170) {
 		numbr = (chaos(numbr/4) + chaos(numbr/2) + chaos(numbr/8) + chaos(numbr/16));
-	}*/
-	/*for(int i=0;i<512;i++) {
-		parent_row->array[i] = 0;
+	}
+	for(int i=0;i<512;i++) {
+		parent_row.array[i] = 0;
 	}
 	
-	milky_twilight(parent_row + 252,8,numbr);
+	milky_twilight(parent_row.array + 252,8,numbr);
 
 	/*for(int i=0;i<8;i++) {
 		put_stuff("~d\t",*(parent_row+252+i));
 	}*/
+
 	//put_stuff("~d",bin_to_int(parent_row+252,8));
 	
-	/*for(int i=0;i<512;i++) {
-		offspring_row->array[i] = 0;
+	for(int i=0;i<512;i++) {
+		offspring_row.array[i] = 0;
 	}
+
 	//put_stuff("\n");
+
 	for(int j=1;j<511;j++) {
-		if(parent_row->array[j+1] + parent_row->array[j] == 0) {
-			offspring_row->array[j] = parent_row->array[j-1];
+		if(parent_row.array[j+1] + parent_row.array[j] == 0) {
+			offspring_row.array[j] = parent_row.array[j-1];
 		}
-		else offspring_row->array[j] = !(parent_row->array[j-1]);
+		else offspring_row.array[j] = !(parent_row.array[j-1]);
 	}
+
 	/*for(int i=0;i<8;i++) {
 		put_stuff("~d\t",*(offspring_row+252+i));
-	}
-	put_stuff("~d",bin_to_int(offspring_row+252,8));
-	put_stuff("\n");*/
-	/*return offspring_row;
-}*/
+	}*/
+
+	//put_stuff("~d",bin_to_int(offspring_row+252,8));
+	//put_stuff("\n");
+	return bin_to_int(offspring_row.array + 252,8);
+}
 
 void milky_twilight(int A[],int size,int numbr) {
 	for(int i=size-1;i>=0;i--) {
