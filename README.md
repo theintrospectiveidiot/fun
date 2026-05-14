@@ -304,7 +304,6 @@ To make it work, just doing `gcc fetch.c -o fetch && ./fetch $(GEN)` would be su
 
 ## P.S.
 
-I have also implemented re-rooting that is starting a new branch, u gotta do `patricide`. The recipe for that too is in the [Makefile](https://github.com/theintrospectiveidiot/fun/blob/master/Makefile). 
+- I have also implemented re-rooting that is starting a new branch, u gotta do `patricide`. The recipe for that too is in the [Makefile](https://github.com/theintrospectiveidiot/fun/blob/master/Makefile). 
 
-I also know that the current append and fetch won't work with the `rule 30` added `trojanized_quine`. We do need a new type of append or atleast a modified version of that...
- 
+- It was really fun to do this project!!!
