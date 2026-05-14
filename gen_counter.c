@@ -1,4 +1,4 @@
-//19
+//20
 
 #include<stdio.h>
 #include<string.h>
@@ -32,7 +32,7 @@ void wired(const char *s,int n) {
 
 int main() {
 	char string[4096];
-	int n = 19;
+	int n = 20;
 	//fprintf(stdout,"%cHello, there is nothing fishy here...%c(:^o^:)%c",10,10,10);
 	sprintf(string,s,n,10,10,10,10,10,34,s,34,10,10,10,9,34,34,10,9,10,9,10,9,10,9,10,9,34,34,10,9,10,9,10,9,10,9,10,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,9,34,34,10,9,9,9,10,9,9,10,9,9,10,9,9,10,9,10,10,10,10,9,10,9,n,10,9,34,34,10,9,10,9,10,10);
 	wired(string,n);
