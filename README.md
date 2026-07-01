@@ -307,3 +307,13 @@ To make it work, just doing `gcc fetch.c -o fetch && ./fetch $(GEN)` would be su
 - I have also implemented re-rooting that is starting a new branch, u gotta do `patricide`. The recipe for that too is in the [Makefile](https://github.com/theintrospectiveidiot/fun/blob/master/Makefile). 
 
 - It was really fun to do this project!!!
+
+- Also:
+
+```c
+
+   /\___/\
+  ( 0 w 0 )       - MEOW!
+   (_____)~~
+
+```
